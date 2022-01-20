@@ -1,0 +1,32 @@
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Magebit\PageListWidget\Block\Widget\PageList" id="orange_test_widget">
+        <label>ML01 Widget</label>
+        <description>This is a test ML01 widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+                <value>Navigation</value>
+            </parameter>
+
+            <parameter name="display_type" xsi:type="select" visible="true" required="true" sort_order="2">
+                <label translate="true">Display Mode</label>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label translate="true">All Pages</label>
+                    </option>
+                    <option name="link_inline" value="0">
+                        <label translate="true">Specific Pages</label>
+                    </option>
+                </options>
+            </parameter>
+
+            <parameter name="cms_pages" xsi:type="multiselect" required="true" visible="true" source_model="Magento\Cms\Model\Config\Source\Page">
+                <label translate="true">Selected pages</label>
+                <depends>
+            <parameter name="display_type" value="0"/>
+            </depends>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

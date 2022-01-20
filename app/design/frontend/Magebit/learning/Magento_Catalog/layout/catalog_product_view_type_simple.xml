@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<head>
+    <css src="../web/css/source/_extend.less"/>
+</head>
+<update handle="catalog_product_opengraph" />
+<update handle="page_calendar"/>
+<body>
+    <referenceBlock name="product.info.addtocart">
+        <action method="setTemplate">
+            <argument name="template" xsi:type="string">Magebit_QtyModel::catalog/product/view/addtocart.phtml</argument>
+        </action>
+    </referenceBlock>
+    <referenceBlock name="product.info.addtocart.additional">
+        <action method="setTemplate">
+            <argument name="template" xsi:type="string">Magebit_QtyModel::catalog/product/view/addtocart.phtml</argument>
+        </action>
+    </referenceBlock>
+
+    <referenceContainer name="product.info.extrahint" display="false" />
+    <referenceContainer name="product.info.description" display="false" />
+    <referenceContainer name="product.attributes" display="false" />
+    <referenceContainer name="reviews.tab" display="false" />
+
+    <referenceContainer name="product.info.stock.sku" display="false" />
+
+            <referenceContainer name="product.info.price">
+                <container name="custom.attribute.container" htmlTag="div" htmlClass="custom-attribute-container" after="product.info.sku">
+                    <block class="Magebit\AttributeModel\Block\AttributeList" name="product.attribute.custom" template="Magebit_AttributeModel::customattr.phtml">
+                        <arguments>
+                            <argument name="title" translate="true" xsi:type="string">Material</argument>
+                            <argument name="at_call" xsi:type="string">getmaterial</argument>
+                            <argument name="at_code" xsi:type="string">material</argument>
+                            <argument name="at_label" xsi:type="string">Any Custom Attribute Label</argument>
+                            <argument name="css_class" xsi:type="string">Any CSS Class Name</argument>
+                            <argument name="sort_order" xsi:type="string">20</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </referenceContainer>
+
+    <referenceContainer  name="product.info.price">
+        <container name="product.container.custom" htmlTag="div" htmlClass="product-container-custom" before="-">
+
+        </container>
+    </referenceContainer>
+    <move element="product.price.final" destination="product.container.custom" before="-"/>
+    <move element="product.info.sku" destination="product.container.custom" after="-"/>
+
+<!--    <move element="product.attribute.custom" destination="product.info.price" after="product.info.sku"/>-->
+
+    <move element="product.info.overview" destination="custom.attribute.container" after="product.attribute.custom"/>
+
+    <move element="product.info.stock.sku" destination="product.info.form.content" before="product.info.addtocart"/>
+    <move element="product.info.upsell" destination="product.info.addtocart" after="-"/>
+
+</body>
+</page>

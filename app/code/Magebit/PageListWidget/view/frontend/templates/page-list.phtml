@@ -1,0 +1,13 @@
+<?php
+/** \Magebit\PageListWidget\Block\Widget\PageList $block */
+?>
+<h3><?= $block->escapeHtml($block->getData('title'))?></h3>
+<ul>
+    <?php foreach($block->getPages()->getItems() as $page): ?>
+        <li><a href="<?= $block->escapeHtml($page->getData('identifier'))?>"><?= $block->escapeHtml($page->getData('title'))?></a></li>
+    <?php endforeach; ?>
+</ul>
+
+
+
+
