@@ -1,9 +1,19 @@
 <?php
 
+/**
+ * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @author    <daina.magone@magebit.com>
+ * @license   GNU General Public License ("GPL") v3.0
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare(strict_types=1);
+
 namespace Magebit\AttributeModel\Block;
 
-
 use Magento\Catalog\Model\Product;
+use Magento\Eav\Model\Entity\Attribute\AbstractAttribute;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
@@ -32,8 +42,7 @@ class AttributeList extends Template
         Context                      $context,
         Registry                     $registry,
         array                        $data = []
-    )
-    {
+    ) {
         $this->_coreRegistry = $registry;
         parent::__construct($context, $data);
     }
@@ -98,7 +107,7 @@ class AttributeList extends Template
         return $result_array;
     }
 
-    private function isVisibleOnFrontend(\Magento\Eav\Model\Entity\Attribute\AbstractAttribute $attribute, array $excludeAttr): bool
+    private function isVisibleOnFrontend(AbstractAttribute $attribute, array $excludeAttr): bool
     {
         return ($attribute->getIsVisibleOnFront() && !in_array($attribute->getAttributeCode(), $excludeAttr));
     }

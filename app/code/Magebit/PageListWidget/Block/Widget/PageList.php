@@ -1,9 +1,17 @@
 <?php
 
+/**
+ * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @author    <daina.magone@magebit.com>
+ * @license   GNU General Public License ("GPL") v3.0
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare(strict_types=1);
+
 namespace Magebit\PageListWidget\Block\Widget;
 
-use Hoa\Ustring\Search;
-use Magento\Catalog\Api\Data\CategoryInterface;
 use Magento\Cms\Api\Data\PageSearchResultsInterface;
 use Magento\Cms\Model\PageRepository;
 use Magento\Framework\Api\SearchCriteriaBuilderFactory;
@@ -42,8 +50,7 @@ class PageList extends Template implements BlockInterface
         Template\Context             $context,
         RequestInterface             $request,
         array                        $data = []
-    )
-    {
+    ) {
         $this->searchCriteriaBuilderFactory = $searchCriteriaBuilderFactory;
         $this->pageRepository = $pageRepository;
         $this->request = $request;

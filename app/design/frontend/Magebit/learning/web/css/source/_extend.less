@@ -4,22 +4,35 @@
 @attribute-container-color: #F9F9F9;
 @dark-grey:                 #333333;
 @full-width:                100%;
-
+@pad-marg-20px:             20px;
+@display-flex:              flex;
+@border:                    1px solid;
 .catalog-product-view {
-    // PRODUCT IMG container styling
+    //
+    //  PRODUCT IMG container styling
+    //  _____________________________________________
+
     .main .media {
         width: 52%;
         & when (@media-common = true) {
             width: @full-width;
         }
     }
-    // PRODUCT INFORMATION CONTAINER styling
+
+    //
+    //  PRODUCT INFORMATION CONTAINER styling
+    //  _____________________________________________
+
     .product-info-main {
         width: 45%;
         & when (@media-common = true) {
             width: @full-width;
         }
-        // PRODUCT TITLE, REVIEW and ADD REVIEW styling
+
+        //
+        //  PRODUCT TITLE, REVIEW and ADD REVIEW styling
+        //  ---------------------------------------------
+
         .view {
             color: @orange-color;
             text-decoration: underline;
@@ -30,56 +43,75 @@
         }
 
         .add {
-            border: 1px solid @dark-grey;
+            border: @border @dark-grey;
             border-radius: 2px;
             color: @dark-grey;
             font: normal normal 600 12px/17px Open Sans;
             padding: 6px 10px 5px 10px;
         }
-        // PRICE and SKU styling
+
+        //
+        //  PRICE and SKU styling
+        //  ---------------------------------------------
+
         .product-info-price {
             border-bottom: none;
+
             .product-container-custom {
-                display: flex;
+                display: @display-flex;
+
                 .price-container .price-wrapper {
+
                     .price {
                         font: normal normal 600 32px/43px Open Sans;
                     }
                 }
+
                 .sku {
                     font: normal normal normal 14px/19px Open Sans;
                     margin-left: 16px;
                     margin-top: 12px;
                 }
             }
-            // ATTRIBUTES and SHORT DESCR. styling
+
+            //
+            //  ATTRIBUTES and SHORT DESCR. styling
+            //  ---------------------------------------------
+
             .custom-attribute-container {
-                background: @attribute-container-color 0% 0% no-repeat;
-                padding-top: 20px;
-                padding-bottom: 20px;
+                background: @attribute-container-color 0 0 no-repeat;
+                padding-top: @pad-marg-20px;
+                padding-bottom: @pad-marg-20px;
+
                 ul {
                     margin-bottom: 13px;
                 }
+
                 .overview {
                     margin: 0;
+
                     .value p {
                         margin-bottom: 0;
                         font: normal normal normal 12px/17px Open Sans;
-                        letter-spacing: 0px;
-                        padding-left: 20px;
+                        letter-spacing: 0;
+                        padding-left: @pad-marg-20px;
                     }
                 }
             }
         }
     }
 
-    // QUANTITY button/input styling
+    //
+    //  QUANTITY button/input styling
+    //  _____________________________________________
+
     .input-group {
+
         .input-text-qty {
             width: 86px;
             height: 52px;
-            background: @white-color 0% 0% no-repeat padding-box;
-            border: 1px solid @light-grey-color;
+            background: @white-color 0 0 no-repeat padding-box;
+            border: @border @light-grey-color;
             top: 1.5px;
             position: relative;
         }
@@ -97,10 +129,10 @@
         .input-qty-button {
             width: 52px;
             height: 52px;
-            background: @white-color 0% 0% no-repeat padding-box;
+            background: @white-color 0 0 no-repeat padding-box;
             padding: 21px;
-            border: 1px solid @light-grey-color;
-            border-radius: 0px 2px 2px 0px;
+            border: @border @light-grey-color;
+            border-radius: 0 2px 2px 0;
             margin: 0;
 
             .input-qty-button-increase {
@@ -108,43 +140,54 @@
                 width: 10px;
                 height: 10px;
                 background: url("../Magento_Catalog/images/Group9.svg") no-repeat padding-box;
-                border-radius: 0px 2px 2px 0px;
+                border-radius: 0 2px 2px 0;
             }
             .input-qty-button-decrease {
                 display: block;
                 width: 10px;
                 height: 2px;
                 background: url("../Magento_Catalog/images/Rectangle19.svg") no-repeat padding-box;
-                border-radius: 2px 0px 0px 2px;
+                border-radius: 2px 0 0 2px;
             }
         }
     }
+    //
+    //  IN STOCK text/img styling
+    //  _____________________________________________
 
-    //IN STOCK text/img styling
     .product-add-form form {
+
         .control {
             display: inline-block;
         }
+
         .stock-container-custom {
             display: inline-block;
+
             .stock-item-info {
                 display: inherit;
             }
+
             .instock-tick {
                 width: 11px;
                 height: 8px;
                 background: url("../Magento_Catalog/images/Group4.svg") no-repeat padding-box;
-                margin-left: 20px;
+                margin-left: @pad-marg-20px;
                 & when (@media-common = true) {
                     margin-left: 0;
                 }
             }
+
             .in-stock {
                 font: normal normal bold 14px/19px Open Sans;
             }
         }
     }
-    // ADD TO CART button styling
+
+    //
+    //  ADD TO CART button styling
+    //  _____________________________________________
+
     .tocart {
         background-color: @orange-color;
     }
@@ -154,16 +197,21 @@
         border: none;
     }
 
-    // RELATED product styling
+    //
+    //  RELATED product styling
+    //  _____________________________________________
+
     .product-item-actions .actions-primary {
         width: @full-width;
     }
 
     .product-item {
         margin-right: 30px;
+
         .tocart {
             visibility: hidden;
         }
+
         &:hover {
             .tocart {
                 visibility: visible;
@@ -177,26 +225,33 @@
 
     .related-available .product-item-details .product-item-name {
         margin-left: 0;
+
         .product-item-link {
             text-align: left;
         }
     }
 
-    // UPSELL product styling
+    //
+    //  UPSELL product styling
+    //  _____________________________________________
+
     .upsell .block-title {
-        border-bottom: 1px solid @light-grey-color;
+        border-bottom: @border @light-grey-color;
         padding-bottom: 5px;
     }
 
     .products-upsell {
         margin-top: 0;
+
         .product-items {
             margin-top: 0;
+
             .product-item {
                 width: @full-width;
-                display: flex;
+                display: @display-flex;
+
                 .product-item-info {
-                    display: flex;
+                    display: @display-flex;
                     width: auto;
                     &:hover {
                         box-shadow: none;
@@ -204,30 +259,34 @@
                         margin: 0;
                         padding: 0;
                     }
+
                     .product-item-details {
-                        margin-left: 20px;
+                        margin-left: @pad-marg-20px;
+
                         .product-item-link {
                             font: normal normal 600 16px/22px Open Sans;
-                            letter-spacing: 0px;
+                            letter-spacing: 0;
                             color: @dark-grey;
                         }
                     }
                 }
+
                 .view-product-container {
                     width: 109px;
                     height: 32px;
-                    display: flex;
+                    display: @display-flex;
                     justify-content: center;
                     align-items: center;
-                    background: @dark-grey 0% 0% no-repeat padding-box;
+                    background: @dark-grey 0 0 no-repeat padding-box;
                     border-radius: 2px;
                     margin-left: auto;
                     margin-top: 49px;
+
                     .view-product-link {
                         text-align: left;
                         font: normal normal 600 14px/19px Open Sans;
-                        letter-spacing: 0px;
-                        color: #FFFFFF;
+                        letter-spacing: 0;
+                        color: @white-color;
                     }
                 }
             }
