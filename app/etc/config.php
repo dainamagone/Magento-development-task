@@ -358,6 +358,7 @@ return [
         'MageMastery_FirstModule' => 1,
         'MageMastery_FirstPage' => 1,
         'Magebit_AttributeModel' => 1,
+        'Magebit_Faq' => 1,
         'Magebit_PageListWidget' => 1,
         'Magebit_QtyModel' => 1,
         'PayPal_Braintree' => 1,

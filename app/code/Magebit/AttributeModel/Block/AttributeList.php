@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
