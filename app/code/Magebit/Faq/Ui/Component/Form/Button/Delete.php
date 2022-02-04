@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -11,18 +11,15 @@ declare(strict_types=1);
 
 namespace Magebit\Faq\Ui\Component\Form\Button;
 
+use Magebit\Faq\Api\Data\QuestionsInterface;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
- * Class Delete
+ * Class Delete (button in edit admin grid form)
  */
 class Delete implements ButtonProviderInterface
 {
-    /**
-     * @return array
-     */
-
     protected $context;
 
     public function __construct(
@@ -31,10 +28,14 @@ class Delete implements ButtonProviderInterface
         $this->context = $context;
     }
 
-    public function getButtonData()
+    /**
+     * Get button data
+     * @return array
+     */
+    public function getButtonData(): array
     {
         $data = [];
-        $id = $this->context->getRequest()->getParam('id');
+        $id = $this->context->getRequest()->getParam(QuestionsInterface::ID);
         if ($id) {
             $data = [
                 'label' => __('Delete'),
@@ -48,13 +49,24 @@ class Delete implements ButtonProviderInterface
         return $data;
     }
 
+    /**
+     * Get URL for delete
+     *
+     * @return string
+     */
     public function getDeleteUrl()
     {
         $id = $this->context->getRequest()->getParam('id');
         return $this->getUrl('*/*/delete', ['id' => $id]);
     }
 
-    public function getUrl($route = '', $params = [])
+    /**
+     * Get URL
+     * @param string $route
+     * @param array $params
+     * @return string
+     */
+    public function getUrl(string $route = '', array $params = []): string
     {
         return $this->context->getUrlBuilder()->getUrl($route, $params);
     }

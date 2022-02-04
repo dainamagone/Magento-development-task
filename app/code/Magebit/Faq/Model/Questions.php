@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -16,6 +16,9 @@ use Magento\Framework\Model\AbstractModel;
 use Magebit\Faq\Api\Data\QuestionsInterface;
 use Magebit\Faq\Model\ResourceModel\Questions as ResourceModel;
 
+/**
+ * Class Questions
+ */
 class Questions extends AbstractModel implements QuestionsInterface, IdentityInterface
 {
     const CACHE_TAG = 'magebit_faq';
@@ -24,6 +27,9 @@ class Questions extends AbstractModel implements QuestionsInterface, IdentityInt
 
     protected $_eventPrefix = 'magebit_faq';
 
+    /**
+     * Constants for status
+     */
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
 
@@ -32,7 +38,12 @@ class Questions extends AbstractModel implements QuestionsInterface, IdentityInt
         $this->_init(ResourceModel::class);
     }
 
-    public function getStatus()
+    /**
+     * Available status
+     *
+     * @return array
+     */
+    public function getAvailableStatus(): array
     {
         return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
@@ -45,42 +56,85 @@ class Questions extends AbstractModel implements QuestionsInterface, IdentityInt
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
-    public function getId() {
-        return $this->getData(self::ID);
+    /**
+     * @inheriDoc
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->getData(self::ID) ?
+            (int) $this->getData(self::ID) :
+            $this->getData(self::ID);
     }
 
-    public function getQuestion() {
+    /**
+     * @inheritDoc
+     */
+    public function getQuestion(): ?string
+    {
         return $this->getData(self::QUESTION);
     }
 
-    public function getAnswer() {
+    /**
+     * @inheritDoc
+     */
+    public function getAnswer(): ?string
+    {
         return $this->getData(self::ANSWER);
     }
 
-    public function getPosition() {
+    /**
+     * @inheritDoc
+     */
+    public function getStatus(): ?bool
+    {
+        return (bool) $this->getData(self::STATUS);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPosition(): ?string
+    {
         return $this->getData(self::POSITION);
     }
 
-    public function getUpdatedAt() {
+    /**
+     * @inheritDoc
+     */
+    public function getUpdatedAt(): ?string
+    {
         return $this->getData(self::UPDATE_AT);
     }
 
-    public function setQuestion($question)
+    /**
+     * @inheritDoc
+     */
+    public function setQuestion(string $question): QuestionsInterface
     {
         return $this->setData(self::QUESTION, $question);
     }
 
-    public function setAnswer($answer)
+    /**
+     * @inheritDoc
+     */
+    public function setAnswer(string $answer): QuestionsInterface
     {
         return $this->setData(self::ANSWER, $answer);
     }
 
-    public function setStatus($status)
+    /**
+     * @inheritDoc
+     */
+    public function setStatus($status): QuestionsInterface
     {
         return $this->setData(self::STATUS, $status);
     }
 
-    public function setPosition($position)
+    /**
+     * @inheritDoc
+     */
+    public function setPosition(string $position): QuestionsInterface
     {
         return $this->setData(self::POSITION, $position);
     }

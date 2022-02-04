@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Magebit\Faq\Model;
 
+use Magebit\Faq\Api\Data\QuestionsSearchResultsInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
@@ -93,39 +94,42 @@ class QuestionsRepository implements QuestionsRepositoryInterface
                 $exception
             );
         }
+
         return $faq;
     }
 
     /**
      * @inheritDoc
      */
-    public function getById($id): QuestionsInterface
+    public function getById(int $id): QuestionsInterface
     {
         $faq = $this->objectFactory->create();
         $this->objectResourceModel->load($faq, $id);
         if (!$faq->getId()) {
             throw new NoSuchEntityException(__('FAQ with id "%1" does not exist.', $id));
         }
+
         return $faq;
     }
 
     /**
      * @inheritDoc
      */
-    public function delete(QuestionsInterface $faq)
+    public function delete(QuestionsInterface $faq): bool
     {
         try {
             $this->objectResourceModel->delete($faq);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__('Could not delete the FAQ: %1', $exception->getMessage()));
         }
+
         return true;
     }
 
     /**
      * @inheritDoc
      */
-    public function deleteById($id)
+    public function deleteById(int $id): bool
     {
         return $this->delete($this->getById($id));
     }
@@ -133,7 +137,7 @@ class QuestionsRepository implements QuestionsRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getList(SearchCriteriaInterface $searchCriteria)
+    public function getList(SearchCriteriaInterface $searchCriteria): QuestionsSearchResultsInterface
     {
         $collection = $this->collectionFactory->create();
         $this->collectionProcessor->process($searchCriteria, $collection);

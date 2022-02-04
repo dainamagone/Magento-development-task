@@ -4,7 +4,9 @@ namespace Magebit\Faq\Api;
 
 use Magebit\Faq\Api\Data\QuestionsInterface;
 
-
+/**
+ * Interface QuestionsManagementInterface
+ */
 interface QuestionsManagementInterface
 {
     /**

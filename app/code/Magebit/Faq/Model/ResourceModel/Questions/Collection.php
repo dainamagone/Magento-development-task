@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -15,6 +15,9 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Magebit\Faq\Model\Questions as QuestionsModel;
 use Magebit\Faq\Model\ResourceModel\Questions as QuestionsResource;
 
+/**
+ * Class Collection
+ */
 class Collection extends AbstractCollection
 {
     /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -11,13 +11,23 @@ declare(strict_types=1);
 
 namespace Magebit\Faq\Block;
 
+use Magebit\Faq\Model\Questions;
 use Magento\Framework\View\Element\Template;
 use Magebit\Faq\Api\QuestionsRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SortOrderBuilder;
+use Magebit\Faq\Api\Data\QuestionsInterface;
 
+/**
+ * Class QuestionsList
+ */
 class QuestionsList extends Template
 {
+    /**
+     * Constants for filter criteria
+     */
+    const ASCENDING = 'ASC';
+    const CONDITION_TYPE = 'eq';
 
     /**
      * @var QuestionsRepositoryInterface
@@ -48,11 +58,15 @@ class QuestionsList extends Template
         parent::__construct($context, $data);
     }
 
+    /**
+     * Retrieve questions
+     *
+     */
     public function getQuestions()
     {
-        $sortOrder = $this->sortOrderBuilder->setField('position')->setDirection('ASC')->create();
+        $sortOrder = $this->sortOrderBuilder->setField(QuestionsInterface::POSITION)->setDirection(self::ASCENDING)->create();
         $searchCriteria = $this->searchCriteriaBuilder
-            ->addFilter('status', 1, 'eq')
+            ->addFilter(QuestionsInterface::STATUS, Questions::STATUS_ENABLED, self::CONDITION_TYPE)
             ->setSortOrders([$sortOrder]);
 
         $searchCriteria = $searchCriteria->create();
@@ -61,6 +75,7 @@ class QuestionsList extends Template
         if ($searchResult->getTotalCount() > 0) {
             $items = $searchResult->getItems();
         }
+
         return $items;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -14,8 +14,13 @@ namespace Magebit\Faq\Controller\Index;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
+/**
+ * Class Index (frontend)
+ */
 class Index extends Action
 {
     protected $_pageFactory;
@@ -23,12 +28,15 @@ class Index extends Action
     public function __construct(
         Context $context,
         PageFactory $pageFactory
-    )
-    {
+    ) {
         $this->_pageFactory = $pageFactory;
         return parent::__construct($context);
     }
 
+    /**
+     * Index action
+     * @return ResultInterface|Page
+     */
     public function execute()
     {
         return $this->resultFactory->create(ResultFactory::TYPE_PAGE);

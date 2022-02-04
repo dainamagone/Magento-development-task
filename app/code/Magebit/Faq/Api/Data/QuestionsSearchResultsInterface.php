@@ -13,7 +13,7 @@ interface QuestionsSearchResultsInterface extends SearchResultsInterface
      *
      * @return QuestionsInterface[]
      */
-    public function getItems();
+    public function getItems(): array;
 
     /**
      * Set questions Complete list.
@@ -21,6 +21,6 @@ interface QuestionsSearchResultsInterface extends SearchResultsInterface
      * @param QuestionsInterface[] $items
      * @return $this
      */
-    public function setItems(array $items);
+    public function setItems(array $items): QuestionsSearchResultsInterface;
 
 }

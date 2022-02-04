@@ -7,9 +7,8 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 /**
- * Interface CarsRepositoryInterface
+ * Interface QuestionsRepositoryInterface
  *
- * @api
  */
 interface QuestionsRepositoryInterface
 {
@@ -19,17 +18,17 @@ interface QuestionsRepositoryInterface
      * @param QuestionsInterface $faq
      * @return QuestionsInterface
      */
-    public function save(QuestionsInterface $faq);
+    public function save(QuestionsInterface $faq): QuestionsInterface;
 
     /**
-     * Get an FAQ by Id
+     * Get an FAQ by ID
      *
      * @param int $id
      * @return QuestionsInterface
      * @throws NoSuchEntityException
      * @throws LocalizedException
      */
-    public function getById($id);
+    public function getById(int $id): QuestionsInterface;
 
     /**
      * Retrieve FAQs which match a specified criteria.
@@ -42,19 +41,19 @@ interface QuestionsRepositoryInterface
      * Delete an Faq
      *
      * @param QuestionsInterface $faq
-     * @return QuestionsInterface
+     * @return bool
      * @throws NoSuchEntityException
      * @throws LocalizedException
      */
-    public function delete(QuestionsInterface $faq);
+    public function delete(QuestionsInterface $faq): bool;
 
     /**
-     * Delete an FAQ by Id
+     * Delete an FAQ by ID
      *
      * @param int $id
-     * @return QuestionsInterface
+     * @return bool
      * @throws NoSuchEntityException
      * @throws LocalizedException
      */
-    public function deleteById($id);
+    public function deleteById(int $id): bool;
 }

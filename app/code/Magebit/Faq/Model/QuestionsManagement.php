@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -14,7 +14,9 @@ namespace Magebit\Faq\Model;
 use Magebit\Faq\Api\Data\QuestionsInterface;
 use Magebit\Faq\Api\QuestionsManagementInterface;
 
-
+/**
+ * Class QuestionsManagement
+ */
 class QuestionsManagement implements QuestionsManagementInterface
 {
     /**
@@ -40,6 +42,5 @@ class QuestionsManagement implements QuestionsManagementInterface
     {
         $question->setStatus(false);
         $this->questionsRepository->save($question);
-
     }
 }

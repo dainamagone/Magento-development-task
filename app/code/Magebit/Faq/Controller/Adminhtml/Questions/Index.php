@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -13,8 +13,12 @@ namespace Magebit\Faq\Controller\Adminhtml\Questions;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
+/**
+ * Class Index (in adminhtml)
+ */
 class Index extends Action
 {
     protected $resultPageFactory = false;
@@ -22,12 +26,15 @@ class Index extends Action
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory
-    )
-    {
+    ) {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }
 
+    /**
+     * Index action
+     * @return Page
+     */
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
@@ -35,6 +42,4 @@ class Index extends Action
 
         return $resultPage;
     }
-
-
 }

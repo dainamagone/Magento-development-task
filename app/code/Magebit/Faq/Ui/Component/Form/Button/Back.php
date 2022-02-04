@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -14,7 +14,9 @@ namespace Magebit\Faq\Ui\Component\Form\Button;
 use Magento\Backend\Block\Widget\Context;
 use Magebit\Faq\Api\QuestionsRepositoryInterface;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
-
+/**
+ * Class Back (button in edit/new admin grid form)
+ */
 class Back implements ButtonProviderInterface
 {
     protected $context;
@@ -28,7 +30,11 @@ class Back implements ButtonProviderInterface
         $this->questionRepository = $questionRepository;
     }
 
-    public function getButtonData()
+    /**
+     * Get Button Data
+     * @return array
+     */
+    public function getButtonData(): array
     {
         return [
             'label' => __('Back'),
@@ -38,12 +44,22 @@ class Back implements ButtonProviderInterface
         ];
     }
 
-    public function getBackUrl()
+    /**
+     * Get URL for back
+     * @return string
+     */
+    public function getBackUrl(): string
     {
         return $this->getUrl('*/*/');
     }
 
-    public function getUrl($route = '', $params = [])
+    /**
+     * Get URL
+     * @param string $route
+     * @param array $params
+     * @return string
+     */
+    public function getUrl(string $route = '', array $params = []): string
     {
         return $this->context->getUrlBuilder()->getUrl($route, $params);
     }

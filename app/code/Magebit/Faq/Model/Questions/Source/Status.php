@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -14,6 +14,9 @@ namespace Magebit\Faq\Model\Questions\Source;
 use Magebit\Faq\Model\Questions;
 use Magento\Framework\Data\OptionSourceInterface;
 
+/**
+ * Class Status
+ */
 class Status implements OptionSourceInterface
 {
     /**
@@ -39,13 +42,14 @@ class Status implements OptionSourceInterface
     public function toOptionArray()
     {
         $options[] = ['label' => '', 'value' => ''];
-        $availableOptions = $this->faq->getStatus();
+        $availableOptions = $this->faq->getAvailableStatus();
         foreach ($availableOptions as $key => $value) {
             $options[] = [
                 'label' => $value,
                 'value' => $key,
             ];
         }
+
         return $options;
     }
 }

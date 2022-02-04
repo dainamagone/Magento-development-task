@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -11,10 +11,12 @@ declare(strict_types=1);
 
 namespace Magebit\Faq\Controller\Adminhtml\Questions;
 
+use Exception;
 use Magebit\Faq\Model\QuestionsManagement;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 use Magebit\Faq\Model\ResourceModel\Questions\CollectionFactory;
 use Magento\Framework\Controller\ResultFactory;
@@ -56,12 +58,12 @@ class MassEnable extends Action
         parent::__construct($context);
     }
     /**
-     * Execute action
+     * Execute mass enable action
      *
      * @return Redirect
-     * @throws \Magento\Framework\Exception\LocalizedException|\Exception
+     * @throws LocalizedException|Exception
      */
-    public function execute()
+    public function execute(): Redirect
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
 
@@ -69,10 +71,10 @@ class MassEnable extends Action
             $this->questionsManagement->enableQuestion($item);
         }
 
-        $this->messageManager->addSuccess(__('A total of %1 record(s) have been enabled.', $collection->getSize()));
-
+        $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been enabled.', $collection->getSize()));
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+
         return $resultRedirect->setPath('*/*/');
     }
 }

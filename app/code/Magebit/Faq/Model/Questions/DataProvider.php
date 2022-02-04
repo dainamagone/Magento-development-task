@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -11,17 +11,21 @@ declare(strict_types=1);
 
 namespace Magebit\Faq\Model\Questions;
 
+use Magebit\Faq\Api\Data\QuestionsInterface;
 use Magebit\Faq\Model\ResourceModel\Questions\CollectionFactory;
 use Magebit\Faq\Model\Questions;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 
+/**
+ * Class DataProvider
+ */
 class DataProvider extends AbstractDataProvider
 {
     /**
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param CollectionFactory $contactCollectionFactory
+     * @param CollectionFactory $questionsCollectionFactory
      * @param array $meta
      * @param array $data
      */
@@ -29,11 +33,11 @@ class DataProvider extends AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $contactCollectionFactory,
+        CollectionFactory $questionsCollectionFactory,
         array $meta = [],
         array $data = []
     ) {
-        $this->collection = $contactCollectionFactory->create();
+        $this->collection = $questionsCollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
@@ -45,13 +49,11 @@ class DataProvider extends AbstractDataProvider
 
         $items = $this->collection->getItems();
         $this->loadedData = array();
-        /** @var Questions $contact */
-        foreach ($items as $contact) {
-            // our fieldset is called "contact" or this table so that magento can find its datas:
-            $this->loadedData[$contact->getId()]['question'] = $contact->getData();
+        /** @var Questions $questions */
+        foreach ($items as $questions) {
+            $this->loadedData[$questions->getId()][QuestionsInterface::QUESTION] = $questions->getData();
         }
 
         return $this->loadedData;
-
     }
 }

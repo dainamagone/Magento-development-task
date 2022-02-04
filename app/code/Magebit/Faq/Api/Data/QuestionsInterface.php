@@ -21,42 +21,42 @@ interface QuestionsInterface {
      *
      * @return int|null
      */
-    public function getId();
+    public function getId(): ?int;
 
     /**
      * Get question
      *
      * @return string|null
      */
-    public function getQuestion();
+    public function getQuestion(): ?string;
 
     /**
      * Get answer
      *
      * @return string|null
      */
-    public function getAnswer();
+    public function getAnswer(): ?string;
 
     /**
      * Is active
      *
      * @return bool|null
      */
-    public function getStatus();
+    public function getStatus(): ?bool;
 
     /**
      * Get position for sort order
      *
      * @return string|null
      */
-    public function getPosition();
+    public function getPosition(): ?string;
 
     /**
      * Get update time
      *
      * @return string|null
      */
-    public function getUpdatedAt();
+    public function getUpdatedAt(): ?string;
 
     /**
      * Set question
@@ -64,7 +64,7 @@ interface QuestionsInterface {
      * @param string $question
      * @return QuestionsInterface
      */
-    public function setQuestion($question);
+    public function setQuestion(string $question): QuestionsInterface;
 
     /**
      * Set answer
@@ -72,7 +72,7 @@ interface QuestionsInterface {
      * @param string $answer
      * @return QuestionsInterface
      */
-    public function setAnswer($answer);
+    public function setAnswer(string $answer): QuestionsInterface;
 
     /**
      * Set is active
@@ -80,7 +80,7 @@ interface QuestionsInterface {
      * @param int|bool $status
      * @return QuestionsInterface
      */
-    public function setStatus($status);
+    public function setStatus($status): QuestionsInterface;
 
     /**
      * Set position for sort order
@@ -88,5 +88,5 @@ interface QuestionsInterface {
      * @param string $position
      * @return QuestionsInterface
      */
-    public function setPosition($position);
+    public function setPosition(string $position): QuestionsInterface;
 }

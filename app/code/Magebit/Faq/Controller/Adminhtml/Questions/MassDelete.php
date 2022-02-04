@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2021 Magebit (https://magebit.com/)
+ * @copyright Copyright (c) 2022 Magebit (https://magebit.com/)
  * @author    <daina.magone@magebit.com>
  * @license   GNU General Public License ("GPL") v3.0
  *
@@ -49,12 +49,12 @@ class MassDelete extends Action implements HttpPostActionInterface
     }
 
     /**
-     * Execute action
+     * Execute mass delete action
      *
      * @return Redirect
      * @throws LocalizedException|Exception
      */
-    public function execute()
+    public function execute(): Redirect
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $collectionSize = $collection->getSize();
